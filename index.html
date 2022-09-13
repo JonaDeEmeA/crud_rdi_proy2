@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"  href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+</head>
+<body>
+    <header>
+    <nav class="navbar bg-danger">
+        <div class="container-fluid">
+          <span class="navbar-text">
+            PRESENTACIÓN
+          </span>
+        </div>
+      </nav>
+    </header>
+
+
+   
+
+
+    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#contenedor-modal">Agregar</button>
+    <div class="modal fade" id="contenedor-modal" tabindex="-1" data-bs-backdrop="static" >
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalToggleLabel">Agregar</h5>
+                    <button  class="btn-close" data-bs-dismiss="modal">
+                        
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="row">
+                        <div class="mb-3 col-4 ">
+                          <label for="tag-especialidad" class="col-form-label">Número RDI:</label>
+                          <input type="text" class="form-control" id="txt-rdi">
+                        </div>
+                        <div class="mb-3 col-4">
+                          <label for="tag-especialidad" class="col-form-label">Número Ficha:</label>
+                          <input type="text" class="form-control" id="txt-ficha">
+                        </div>
+                        <div class="mb-3 col-4">
+                          <label for="tag-especialidad" class="col-form-label">Especialidad:</label>
+                          <input type="text" class="form-control" id="txt-esp" >
+                        </div>
+                        <div class="mb-3">
+                          <label for="text-obs" class="col-form-label">Descripción:</label>
+                          <textarea class="form-control" id="txt-obs"></textarea>
+                        </div>
+                        <div class="mb-3 col-6">
+                          <label for="tag-especialidad" class="col-form-label">Responsable:</label>
+                          <input type="text" class="form-control" id="txt-responsable">
+                        </div>
+                        <div class="mb-3 col-6">
+                          <label for="tag-especialidad" class="col-form-label">Estado:</label>
+                          <input type="text" class="form-control" id="txt-estado">
+                        </div>
+                        
+                      </form>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi culpa quaerat totam non expedita repellendus voluptas libero, eveniet nulla facilis!</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-info" data-bs-dismiss="modal">Cerrar</button>
+                    <button class="btn btn-danger" id="btn.add" onclick="javascript: addRDI()">Guardar</button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <section class="container">
+        <div class="row">
+            <div class="col">
+
+                <table class="table table-striped table-bordered caption-top table-hover" id="Tabla">
+                    <caption>Resumen RDI</caption>
+                    <thead class="table-dark " >
+                        <tr>
+                            <th>N° RDI</th>
+                            <th>N° FICHA</th>
+                            <th>ESPECIALIDAD</th>
+                            <th>DESCRIPCIÓN</th>
+                            <th>RESPONSABLE</th>
+                            <th>ESTADO</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataRdi">
+                        <tr>
+                            
+                            <td>dato 1</td>
+                            <td>dato 2</td>
+                            <td>dato 3</td>
+                            <td class="max-e">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel harum suscipit praesentium ipsa fugiat? Facilis provident earum vero sint non voluptatibus dicta eligendi asperiores officia, hic aut! Impedit, laudantium consectetur!</td>
+                            <td>dato 5</td>
+                            <td>dato 5</td>
+                        </tr>
+                        <tr>
+                            <td >dato 1</td>
+                            <td>dato 2</td>
+                            <td>dato 3</td>
+                            <td>dato 4 4444444444 4444444 44444444444444444 444444444 44444444 4444444444444444 4   4 444444444 5555555555555</td>
+                            <td>dato 5</td>
+                            <td>dato 5</td>
+                        </tr>
+
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <script src="./script.js"></script>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+    
+  
+
+
+</body>
+</html>
