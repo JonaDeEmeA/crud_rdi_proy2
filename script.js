@@ -67,7 +67,27 @@ function addInTable(readData){
     
   }
 
+  let newCell = newRow.insertCell(6);
   
+  let newBtnEdit = document.createElement("button");
+  newBtnEdit.innerText = "Editar"
+  newBtnEdit.setAttribute("class", "btn btn-secondary col-6 ")
+  newCell.appendChild(newBtnEdit);
+  newCell.setAttribute("class", "row justify-content-center m-0");
 
+  let newBtnDel = document.createElement("button");
+  newBtnDel.innerText = "Eliminar"
+  newBtnDel.setAttribute("class", "btn btn-warning col-6")
+  newCell.appendChild(newBtnDel);
+
+  
+  newBtnEdit.addEventListener("click", editarEntrada);
+
+  
 }
 
+  l
+//---EDITAR
+function editarEntrada(){
+  alert("test click")
+}
