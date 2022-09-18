@@ -1,5 +1,6 @@
 //let row = null;
 let labels = ["N°Ficha", "Especialidad", "Descripcion", "Responsable", "Estado"];
+let $tBody = document.getElementById("dataRdi");
 
 
 
@@ -8,16 +9,24 @@ function addRDI() {
   let inputData = retriveData();
   let readData = readDataLocalStorage(inputData);
   addInTable(readData);
-
-
+  editarEntrada();
+  //Actualizar();
   let $Formulario = document.querySelector("#Modal");
   $Formulario.reset();
 
-
 }
+
+let btnAgregar = document.getElementById("btnAgregar");
+btnAgregar.addEventListener("click", (e)=>{
+  let $Formulario = document.querySelector("#Modal");
+  $Formulario.reset();
+})
 
 let btnGuardar = document.getElementById("btn.add");
 btnGuardar.addEventListener("click", addRDI);
+
+let btnActualizar = document.getElementById("btn.act");
+btnActualizar.addEventListener("click", actualizarEntrada)
 
 
 function retriveIds(collecion) {
@@ -34,8 +43,11 @@ function retriveIds(collecion) {
 
 // CREACION
 // Se crea un arr de los ids de cada Label del modal
-let $lstLabel = document.querySelectorAll("input.form-control, textarea.form-control");
-let lstIdsLabel = retriveIds($lstLabel);
+let $lstLabelAdd = document.getElementsByName("Agregar");
+let lstIdsLabel = retriveIds($lstLabelAdd);
+
+let $lstLabelEdit = document.getElementsByName("edit");
+let arrIdsLabelEdit = retriveIds($lstLabelEdit);
 
 
 
@@ -82,7 +94,7 @@ function creaBtn() {
   newBtnEdit.innerText = "Editar"
   newBtnEdit.setAttribute("class", "btn btn-secondary col-6 ")
   newBtnEdit.setAttribute("type", "button")
-  newBtnEdit.setAttribute("data-bs-target", "#contenedor-modal");
+  newBtnEdit.setAttribute("data-bs-target", "#contenedor-editar");
   newBtnEdit.setAttribute("data-bs-toggle", "modal");
   newBtnEdit.setAttribute("id", `btnEditar${$lstInput.length}`);
 
@@ -90,7 +102,7 @@ function creaBtn() {
   let newBtnDel = document.createElement("button");
   newBtnDel.innerText = "Eliminar"
   newBtnDel.setAttribute("class", "btn btn-warning col-6")
-  //newBtnEdit.addEventListener("click", editarEntrada());
+  
   let lstBtn = [newBtnEdit, newBtnDel]
   return lstBtn;
 
@@ -104,8 +116,8 @@ let $lstInput = document.querySelectorAll("tbody > tr");
 // INSERTAR EN TABLA
 function addInTable(readData) {
 
-  let tableref = document.getElementById("dataRdi");
-  let newRow = tableref.insertRow();
+  let $tableref = document.getElementById("dataRdi");
+  let newRow = $tableref.insertRow();
 
   //Se genera el dato N°RDI dinamicamente en la celda 0
   let $lstInput = document.querySelectorAll("tbody > tr");
@@ -133,62 +145,60 @@ function addInTable(readData) {
 
   newCell.appendChild(newBtns[1]);
 
-  newBtns[0].addEventListener("click", editarEntrada);
+ 
 
 }
-
-
-
 
 
 
 //---EDITAR
+
+
 function editarEntrada() {
 
   let $lstNewBtn = document.querySelectorAll("button.btn-secondary");
-  let lstIdsNewbtn = retriveIds($lstNewBtn);
+  let arrIdsNewbtn = retriveIds($lstNewBtn);
 
-  let row = document.getElementById("dataRdi");
   
-
-  for (let j = 0; j < $lstNewBtn.length; j++) {
+  
+   for (let j = 0; j < $lstNewBtn.length; j++) {
     
-    if (lstIdsNewbtn[j].endsWith(j+1) ) {
+    
 
-      console.log(lstIdsNewbtn[0]);
+      //celda almacena las celdas de la row indicada
+      let celda = $tBody.rows[j].cells;
+      $lstNewBtn[j].addEventListener("click", ()=>{
+        
+        for (let i = 0; i < arrIdsLabelEdit.length; i++) {
 
-      for (let i = 0; i < lstIdsLabel.length; i++) {
-        let row2 = row.rows[i].cells;
-        document.getElementById(lstIdsLabel[i]).value = row2[i + 1].innerText;
+          document.getElementById(arrIdsLabelEdit[i]).value = celda[i + 1].innerText;        
+        }
+      })
 
-      }
-    }else{console.log("no paso")}
-
-
+    console.log("editar entrada");
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 
 
+//function getRowIndex(){}
 
-function Actualizar() {
 
-  for (let i = 0; i < labels.length; i++) {
-    row.cells[i].innerHTML = document.getElementById([i]).value;
 
-  }
+function actualizarEntrada(index) {
+  let $lstNewBtn = document.querySelectorAll("button.btn-secondary");
+  let arrIdsNewbtn = retriveIds($lstNewBtn);   
+
+      //se row2 almacena las celdas de la row indicada
+      
+        console.log(arrIdsNewbtn.indexOf(`btnEditar${$lstNewBtn.length}`));
+        let celda = $tBody.rows[index].cells;
+
+        for (let i = 0; i < arrIdsLabelEdit.length; i++) {
+          
+           
+          celda[i + 1].innerText = document.getElementById(arrIdsLabelEdit[i]).value;
+          console.log("paso");
+        }
 
 }
