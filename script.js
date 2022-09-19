@@ -10,7 +10,13 @@ function addRDI() {
   let readData = readDataLocalStorage(inputData);
   addInTable(readData);
   editarEntrada();
-  //Actualizar();
+  
+  
+  
+  
+  
+  
+  
   let $Formulario = document.querySelector("#Modal");
   $Formulario.reset();
 
@@ -25,8 +31,10 @@ btnAgregar.addEventListener("click", (e)=>{
 let btnGuardar = document.getElementById("btn.add");
 btnGuardar.addEventListener("click", addRDI);
 
+
+let dato = editarEntrada();
 let btnActualizar = document.getElementById("btn.act");
-btnActualizar.addEventListener("click", actualizarEntrada)
+btnActualizar.addEventListener("click", ()=>actualizarEntrada(dato));
 
 
 function retriveIds(collecion) {
@@ -102,6 +110,7 @@ function creaBtn() {
   let newBtnDel = document.createElement("button");
   newBtnDel.innerText = "Eliminar"
   newBtnDel.setAttribute("class", "btn btn-warning col-6")
+  newBtnDel.setAttribute("onClick", "deleteData(this)")
   
   let lstBtn = [newBtnEdit, newBtnDel]
   return lstBtn;
@@ -158,7 +167,7 @@ function editarEntrada() {
 
   let $lstNewBtn = document.querySelectorAll("button.btn-secondary");
   let arrIdsNewbtn = retriveIds($lstNewBtn);
-
+  
   
   
    for (let j = 0; j < $lstNewBtn.length; j++) {
@@ -167,21 +176,50 @@ function editarEntrada() {
 
       //celda almacena las celdas de la row indicada
       let celda = $tBody.rows[j].cells;
-      $lstNewBtn[j].addEventListener("click", ()=>{
+      $lstNewBtn[j].addEventListener("click", ( e )=>{
+
+          
+        
+        
         
         for (let i = 0; i < arrIdsLabelEdit.length; i++) {
 
           document.getElementById(arrIdsLabelEdit[i]).value = celda[i + 1].innerText;        
         }
+
+        
       })
 
-    console.log("editar entrada");
+    
   }
-
+   
+  
+  
+   
+  
 }
 
 
-//function getRowIndex(){}
+/*function getRowIndex(){
+
+  let $lstNewBtn = document.querySelectorAll("button.btn-secondary");
+  for (let j = 0; j < $lstNewBtn.length; j++) {
+    
+    
+    $lstNewBtn[j].addEventListener("click", ( e )=>{
+
+        
+      let eltr = e.currentTarget.parentElement.parentElement.rowIndex;
+      console.log(eltr);
+
+      
+    })
+
+  return eltr;
+}
+
+}*/
+
 
 
 
@@ -191,14 +229,21 @@ function actualizarEntrada(index) {
 
       //se row2 almacena las celdas de la row indicada
       
-        console.log(arrIdsNewbtn.indexOf(`btnEditar${$lstNewBtn.length}`));
-        let celda = $tBody.rows[index].cells;
+      
+        let celda = $tBody.rows[index-1].cells;
 
         for (let i = 0; i < arrIdsLabelEdit.length; i++) {
           
            
           celda[i + 1].innerText = document.getElementById(arrIdsLabelEdit[i]).value;
-          console.log("paso");
+          
         }
-
+      
+        console.log("paso");
 }
+
+
+function deleteData(btnDel){
+  
+  btnDel.parentElement.parentElement.remove();
+};
